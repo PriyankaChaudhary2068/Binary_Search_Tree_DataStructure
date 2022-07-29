@@ -28,8 +28,44 @@ public class BinarySearchTree {
         System.out.print(root.data + " ");
         inorder(root.right);
     }
+  //Preorder(root,left,right):-
+    public static void preorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
 
-	public static void main(String[] args) {
+    //Postorder(left,right,root):-
+    public static void postorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        postorder(root.left);
+        postorder(root.right);
+        System.out.print(root.data + " ");
+    }
+
+
+    //Search in BST
+    public static boolean search(Node root, int key) {
+        if (root == null) {
+            return false;
+        }
+        if (root.data > key) {
+            return search(root.left, key);
+        } else if (root.data == key) {
+            return true;
+        } else {
+
+            return search(root.right, key);
+        }
+
+    }
+
+    public static void main(String[] args) {
 		
 		System.out.println(" Welcome To Binary Search Tree ");
 		
@@ -40,12 +76,30 @@ public class BinarySearchTree {
         for (int i = 0; i < values.length; i++) {
            root = insert(root, values[i]);
         }
-        
+        System.out.println(" Inorder : ");
         inorder(root);
         System.out.println();
+        
+        System.out.print("Preorder : ");
+        preorder(root);
+        System.out.println();
+
+        System.out.print("Postorder : ");
+        postorder(root);
+        System.out.println();
+
+        if (search(root, 63)) {
+            System.out.println("Key is Found");
+        }
+         else {
+            System.out.println("key is Not Found");
+        }
 
     }
 }
+
+    
+
 
 		
 
